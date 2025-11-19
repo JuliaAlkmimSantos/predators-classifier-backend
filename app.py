@@ -1,6 +1,7 @@
 
 # app.py
 import io
+import os
 from flask import Flask, request, jsonify
 from PIL import Image
 from models_load import classify_image  # import your function
@@ -36,3 +37,6 @@ def classify():
     prob_dict = {cls: float(prob) for cls, prob in zip(classify_image.classes, probs)}
 
    
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
